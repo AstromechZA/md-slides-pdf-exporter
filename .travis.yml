@@ -1,0 +1,9 @@
+sudo: required
+
+services:
+- docker
+
+script:
+- make image
+- echo "${DOCKER_PWD}" | docker login -u ${DOCKER_USER} --password-stdin
+- make push
