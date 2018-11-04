@@ -1,7 +1,12 @@
 const puppeteer = require('puppeteer');
 
 (async () => {
-  const browser = await puppeteer.launch({'executablePath': '/usr/bin/chromium-browser'});
+  const browser = await puppeteer.launch({
+    executablePath: '/usr/bin/chromium-browser',
+    args: [
+      "--no-sandbox",
+    ],
+  });
   const page = await browser.newPage();
   await page.goto('file:///source/index.html', {});
   await page.pdf({
