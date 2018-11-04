@@ -8,7 +8,7 @@ const puppeteer = require('puppeteer');
     ],
   });
   const page = await browser.newPage();
-  await page.goto('file:///source/index.html', {});
+  await page.goto('file:///source/index.html', {timeout: 3000});
   await page.pdf({
       path: '/output/index.pdf', 
       printBackground: true,

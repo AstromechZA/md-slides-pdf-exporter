@@ -6,8 +6,11 @@ DEV_REGISTRY := astromechza
 image:
 	docker build -t $(DEV_REGISTRY)/$(IMAGE_NAME):$(VERSION) .
 
-.PHONY: push
-push: image
-	docker push $(DEV_REGISTRY)/$(IMAGE_NAME):$(VERSION)
+.PHONY: latest 
+latest: image 
 	docker tag $(DEV_REGISTRY)/$(IMAGE_NAME):$(VERSION) $(DEV_REGISTRY)/$(IMAGE_NAME):latest
+
+.PHONY: push
+push: latest
+	docker push $(DEV_REGISTRY)/$(IMAGE_NAME):$(VERSION)
 	docker push $(DEV_REGISTRY)/$(IMAGE_NAME):latest
